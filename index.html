@@ -6,67 +6,74 @@
     <title>ລະບົບຄິດໄລ່ເງິນເດືອນ ແລະ ອາກອນ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;400;700;800&display=swap');
         
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Noto Sans Lao', 'Phetsarath OT', sans-serif; }
         
-        body { background: linear-gradient(135deg, #eef2f3 0%, #8e9eab 100%); min-height: 100vh; padding: 10px 20px 40px 20px; color: #333; display: flex; align-items: flex-start; justify-content: center; }
+        body { background-color: #f0f2f5; min-height: 100vh; padding: 10px 20px 40px 20px; color: #333; display: flex; align-items: flex-start; justify-content: center; }
         
-        .container { max-width: 650px; width: 100%; background: #ffffff; padding: 0 0 35px 0; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); position: relative; overflow: hidden; margin-top: 10px; }
+        .container { max-width: 650px; width: 100%; background: #ffffff; padding: 0 0 35px 0; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; overflow: hidden; margin-top: 5px; }
         
-        .web-header { background: linear-gradient(135deg, #1a365d 0%, #2a4365 100%); padding: 10px 20px; text-align: center; color: white; border-bottom: 4px solid #3182ce; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+        /* --- ສ່ວນຫົວ (Header) - ປັບໃຫ້ແຄບລົງ --- */
+        .web-header { background: #1a365d; padding: 20px 20px; text-align: center; color: white; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        .web-header h2 { font-size: 28px; font-weight: 800; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
         
-        .web-header h2 { font-size: 24px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 0px; }
+        .header-card { width: 100%; display: flex; align-items: center; justify-content: center; gap: 20px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; }
         
-        .fb-big-logo { width: 45px; height: 45px; background: #1877f2; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); text-decoration: none; transition: transform 0.2s; }
-        .fb-big-logo:hover { transform: scale(1.1); }
+        .logo-box { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .fb-logo-circle { width: 45px; height: 45px; background: #1877f2; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .btn-follow { background: #e74c3c; font-weight: bold; padding: 2px 8px; font-size: 9px; color: white; border-radius: 10px; text-decoration: none; border: 1px solid #e74c3c; transition: 0.3s; }
         
-        .btn-follow { background: #e74c3c; color: white; text-decoration: none; font-size: 11px; font-weight: bold; padding: 3px 10px; border-radius: 15px; display: inline-flex; align-items: center; gap: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: all 0.2s; }
-        .btn-follow:hover { background: #c0392b; transform: scale(1.05); }
-        
-        .fb-link { text-decoration: none; }
-        .web-header .sub-title { font-size: 17px; color: #f1c40f; font-weight: 700; text-shadow: 1px 1px 2px rgba(0,0,0,0.6); }
-        
-        .contact-icons { display: flex; justify-content: center; gap: 12px; }
-        .contact-icons a { color: white; font-size: 13px; text-decoration: none; display: flex; align-items: center; gap: 5px; background: rgba(255,255,255,0.15); padding: 4px 10px; border-radius: 20px; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.2); }
-        .contact-icons a:hover { transform: scale(1.05); background: rgba(255,255,255,0.25); }
-        .contact-icons .icon-call { color: #2ecc71; }
-        .contact-icons .icon-wa { color: #25d366; }
-        .contact-icons a span { font-size: 11px; font-weight: bold; }
-        
+        .info-box { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+        .fb-info-text { color: #ffffff; font-weight: 500; font-size: 14px; }
+        .button-row { display: flex; gap: 8px; }
+        .btn-header { padding: 6px 14px; border-radius: 20px; border: none; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 5px; color: white; text-decoration: none; transition: 0.3s; }
+        .btn-subtle { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: #fff; }
+
+        /* --- ສ່ວນຟອມ (Form) --- */
         .form-body { padding: 0 35px; }
-        .section-title { font-size: 15px; color: #4a5568; font-weight: 700; margin: 18px 0 10px 0; padding-bottom: 5px; border-bottom: 1px solid #e2e8f0; text-transform: uppercase; letter-spacing: 0.5px; }
+        .section-title { font-size: 16px; color: #1a365d; font-weight: 700; margin: 20px 0 12px 0; padding-bottom: 5px; border-bottom: 2px solid #e2e8f0; text-transform: uppercase; }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .form-group { margin-bottom: 12px; }
         .full-width { grid-column: span 2; }
         
         label { display: block; margin-bottom: 6px; font-size: 14px; color: #2d3748; font-weight: 600; }
-        input[type="text"], input[type="number"], select { width: 100%; padding: 11px 14px; border: 1px solid #cbd5e0; border-radius: 8px; font-size: 15px; transition: all 0.3s; background-color: #f7fafc; color: #2d3748; }
-        input[type="text"]:focus, input[type="number"]:focus, select:focus { border-color: #3182ce; background-color: #fff; box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15); outline: none; }
         
-        input[readonly] { background-color: #e2e8f0; color: #4a5568; cursor: not-allowed; border-color: #cbd5e0; }
-        input[readonly]:focus { box-shadow: none; border-color: #cbd5e0; background-color: #e2e8f0; }
+        input[type="text"], input[type="number"], select { 
+            width: 100%; 
+            height: 45px; 
+            padding: 0 14px; 
+            border: 1px solid #cbd5e0; 
+            border-radius: 8px; 
+            font-size: 15px; 
+            background-color: #f9fafb; 
+            transition: 0.2s; 
+            outline: none;
+        }
+        
+        input:focus, select:focus { 
+            border-color: #e74c3c !important; 
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2) !important; 
+        }
 
-        select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234a5568'%3E%3Cpath d='M7 10l5 5 5-5H7z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; background-size: 18px; -webkit-appearance: none; -moz-appearance: none; appearance: none; padding-right: 35px; }
+        .input-error { border-color: #e74c3c !important; background-color: #fff5f5 !important; }
         
-        button { width: 100%; padding: 14px; background: linear-gradient(135deg, #3182ce 0%, #2b6cb0 100%); color: white; border: none; border-radius: 8px; font-size: 17px; cursor: pointer; font-weight: 700; margin-top: 15px; box-shadow: 0 4px 12px rgba(49, 130, 206, 0.3); transition: all 0.2s; }
-        button:hover { background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%); transform: translateY(-1px); box-shadow: 0 6px 15px rgba(49, 130, 206, 0.4); }
-        button:active { transform: translateY(1px); }
+        #rankSelect { color: red; font-weight: bold; }
+        #rankSelect option { color: #333; font-weight: normal; }
+        #rankSelect option:first-child { color: red; font-weight: bold; }
+
+        input[readonly] { background-color: #f1f5f9; cursor: not-allowed; }
         
-        .result-section { margin-top: 25px; padding: 20px; background-color: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; animation: fadeIn 0.4s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .btn-calculate { width: 100%; padding: 15px; background: #3182ce; color: white; border: none; border-radius: 8px; font-size: 18px; cursor: pointer; font-weight: 700; margin-top: 20px; transition: 0.3s; }
+        .btn-calculate:hover { background: #2b6cb0; }
         
-        .result-title { font-size: 16px; color: #1a365d; font-weight: 700; margin-bottom: 12px; text-align: center; }
-        .result-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #edf2f7; font-size: 14px; color: #4a5568; }
-        .result-row.deduct { color: #c53030; }
-        .result-row.total-row { border-top: 2px dashed #cbd5e0; border-bottom: none; padding-top: 15px; margin-top: 5px; align-items: center; }
-        .result-row.total-row span:first-child { font-size: 16px; font-weight: 700; color: #2d3748; }
-        .net-salary { font-size: 22px; color: #2f855a; font-weight: 700; background: #f0fff4; padding: 4px 12px; border-radius: 6px; border: 1px solid #c6f6d5; }
+        .result-section { margin-top: 25px; padding: 20px; background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; display: none; }
+        .result-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; color: #4a5568; }
+        .deduction-red { color: #e74c3c !important; font-weight: 700; }
+        .result-row.total-row { border-top: 2px dashed #cbd5e0; font-weight: bold; margin-top: 5px; }
+        .net-salary { font-size: 26px; color: #16a34a; font-weight: 800; }
         
-        .developer-credit { text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-size: 13px; color: #718096; line-height: 1.6; }
-        .developer-credit .fb-footer-link { text-decoration: none; display: inline-block; }
-        .developer-credit .red-text { color: #ff4d4d; font-size: 15px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; justify-content: center; }
-        .developer-credit .red-text i { color: #1877f2; background: white; border-radius: 50%; font-size: 15px; }
+        .developer-credit { text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #94a3b8; font-weight: 600; }
         
         @media (max-width: 500px) { .form-body { padding: 0 20px; } .form-grid { grid-template-columns: 1fr; } .full-width { grid-column: span 1; } }
     </style>
@@ -77,23 +84,19 @@
     <div class="web-header">
         <h2>ລະບົບຄິດໄລ່ເງິນເດືອນ</h2>
         
-        <a href="https://www.facebook.com/share/19Av4s5mEY/" target="_blank" class="fb-big-logo">
-            <i class="fab fa-facebook-f"></i>
-        </a>
-        
-        <a href="https://www.facebook.com/share/19Av4s5mEY/" target="_blank" class="btn-follow">
-            <i class="fas fa-bell"></i> ກົດຕິດຕາມ
-        </a>
-        
-        <a href="https://www.facebook.com/share/19Av4s5mEY/" target="_blank" class="fb-link">
-            <div class="sub-title">
-                KLK ຊື້-ຂາຍ ລົດມືສອງ 020 2982 1715
+        <div class="header-card">
+            <div class="logo-box">
+                <div class="fb-logo-circle"><i class="fab fa-facebook-f"></i></div>
+                <a href="https://www.facebook.com/share/19Av4s5mEY/" target="_blank" class="btn-follow">ກົດຕິດຕາມ</a>
             </div>
-        </a>
-        
-        <div class="contact-icons">
-            <a href="tel:02029821715" class="icon-call"><i class="fas fa-phone-alt"></i> <span>ໂທອອກ</span></a>
-            <a href="https://wa.me/8562029821715" target="_blank" class="icon-wa"><i class="fab fa-whatsapp"></i> <span>WhatsApp</span></a>
+
+            <div class="info-box">
+                <div class="fb-info-text">KLK ຊື້-ຂາຍ ລົດມືສອງ 020 2982 1715</div>
+                <div class="button-row">
+                    <a href="tel:02029821715" class="btn-header btn-subtle"><i class="fas fa-phone-alt"></i> ໂທອອກ</a>
+                    <a href="https://wa.me/8562029821715" target="_blank" class="btn-header btn-subtle"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -103,7 +106,7 @@
             <div class="form-group full-width">
                 <label>ເລືອກຊັ້ນ / ຕຳແໜ່ງ:</label>
                 <select id="rankSelect" onchange="updateBaseSalary()">
-                    <option value="2,926,000">-- ກະລຸນາເລືອກຊັ້ນ (ຄ່າເລີ່ມຕົ້ນ: ຮ້ອຍເອກ) --</option>
+                    <option value="">--ກະລຸນາເລືອກຊັ້ນ---</option>
                     <option value="8,550,000">ພົນເອກ</option>
                     <option value="7,600,000">ພົນໂທ</option>
                     <option value="6,650,000">ພົນຕີ</option>
@@ -122,45 +125,25 @@
                     <option value="2,536,500">ຊັ້ນ II</option>
                 </select>
             </div>
-            
-            <div class="form-group">
-                <label>ເງິນຕາມຊັ້ນ (ກີບ):</label>
-                <input type="text" id="baseSalary" value="2,926,000" readonly>
-            </div>
-            <div class="form-group">
-                <label>ເງິນໜ້າທີ່ຕຳແໜ່ງ (ກີບ):</label>
-                <input type="text" id="positionAllowance" value="0" oninput="formatInput(this)">
-            </div>
-            <div class="form-group">
-                <label>ຈຳນວນປີການ (ປີ):</label>
-                <input type="number" id="yearsOfService" value="7">
-            </div>
-            <div class="form-group">
-                <label>ເງິນນ້ຳມັນ (ກີບ):</label>
-                <input type="text" id="fuelAllowance" value="50,000" oninput="formatInput(this)">
-            </div>
+            <div class="form-group"><label>ເງິນຕາມຊັ້ນ (ກີບ):</label><input type="text" id="baseSalary" placeholder="0" readonly></div>
+            <div class="form-group"><label>ເງິນໜ້າທີ່ຕຳແໜ່ງ (ກີບ):</label><input type="text" id="positionAllowance" value="0" oninput="formatInput(this)"></div>
+            <div class="form-group"><label>ຈຳນວນປີການ (ປີ):</label><input type="number" id="yearsOfService" placeholder="ປ້ອນປີການ"></div>
+            <div class="form-group"><label>ເງິນນ້ຳມັນ (ກີບ):</label><input type="text" id="fuelAllowance" value="50,000" oninput="formatInput(this)" placeholder="ປ້ອນເງິນນ້ຳມັນ"></div>
         </div>
         
-        <div class="section-title">ເງິນອຸດໜູນ ແລະ ນະໂຍບາຍອື່ນໆ</div>
+        <div class="section-title">ເງິນອຸດໜູນອື່ນໆ</div>
         <div class="form-grid">
-            <div class="form-group full-width">
-                <label>*ເງິນອຸດໜູນທີ່ຕ້ອງຫັກ* ປະກັນສັງຄົມແລະອາກອນ (ແພດ.....) (ກີບ):</label>
-                <input type="text" id="taxableAllowance" value="0" oninput="formatInput(this)">
-            </div>
-            <div class="form-group full-width">
-                <label>*ເງິນອຸດໜູນທີ່ຍົກເວັ້ນ* ຫັກປະກັນສັງຄົມແລະອາກອນ (ໂຊເຟີ, ກົດລັບ.....) (ກີບ):</label>
-                <input type="text" id="nonTaxableAllowance" value="0" oninput="formatInput(this)">
-            </div>
+            <div class="form-group full-width"><label>ເງິນອຸດໜູນທີ່ຕ້ອງຫັກອາກອນ (ແພດ ...):</label><input type="text" id="taxableAllowance" value="0" oninput="formatInput(this)"></div>
+            <div class="form-group full-width"><label>ເງິນອຸດໜູນທີ່ຍົກເວັ້ນອາກອນ (ໂຊເຟີລົດ,ກົດລັບ...):</label><input type="text" id="nonTaxableAllowance" value="0" oninput="formatInput(this)"></div>
             
-            <div class="form-group">
+            <div class="form-group full-width">
                 <label>ສະຖານະພາບເມຍ:</label>
                 <select id="wifeCount">
-                    <option value="0">0 ຄົນ (ບໍ່ມີເມຍ/ໂສດ)</option>
+                    <option value="0">0 ຄົນ/ໂສດ</option>
                     <option value="1" selected>1 ຄົນ</option>
                 </select>
             </div>
-            
-            <div class="form-group">
+            <div class="form-group full-width">
                 <label>ຈຳນວນລູກ (ຄົນ):</label>
                 <select id="childCount">
                     <option value="0" selected>0 ຄົນ</option>
@@ -169,133 +152,102 @@
                     <option value="3">3 ຄົນ</option>
                     <option value="4">4 ຄົນ</option>
                     <option value="5">5 ຄົນ</option>
-                    <option value="6">6 ຄົນ</option>
-                    <option value="7">7 ຄົນ</option>
-                    <option value="8">8 ຄົນ</option>
-                    <option value="9">9 ຄົນ</option>
                 </select>
             </div>
         </div>
 
-        <button onclick="calculateSalary()">ຄິດໄລ່ເງິນເດືອນ</button>
+        <button class="btn-calculate" onclick="calculateSalary()">ຄິດໄລ່ເງິນເດືອນ</button>
 
-        <div class="result-section" id="results" style="display:none;">
-            <div class="result-title">📊 ຜົນການຄິດໄລ່ລະອຽດ</div>
-            
+        <div class="result-section" id="results">
             <div class="result-row"><span>ເງິນຕາມຊັ້ນ:</span> <span id="resBaseSalary">0</span></div>
             <div class="result-row"><span>ເງິນສົ່ງເສີມ (30%):</span> <span id="resPromo">0</span></div>
             <div class="result-row"><span>ເງິນໜ້າທີ່ຕຳແໜ່ງ:</span> <span id="resPosition">0</span></div>
             <div class="result-row"><span>ເງິນປີການ:</span> <span id="resService">0</span></div>
-            <div class="result-row"><span>ເງິນອຸດໜູນທີ່ຕ້ອງຫັກ (ແພດ...):</span> <span id="resTaxableAllow">0</span></div>
+            <div class="result-row"><span>ເງິນອຸດໜູນທີ່ຕ້ອງຫັກ:</span> <span id="resTaxableAllow">0</span></div>
+            <div class="result-row" style="background:#f8fafc; font-weight:bold; padding: 10px;"><span>ລວມເງິນເດືອນກ່ອນຫັກ:</span> <span id="resTotalGross">0</span></div>
             
-            <div class="result-row" style="background: #edf2f7; font-weight: bold; padding: 10px 5px;"><span>ລວມເງິນເດືອນກ່ອນຫັກ:</span> <span id="resTotalGross">0</span></div>
+            <div class="result-row deduction-red"><span>ຫັກປະກັນສັງຄົມ (8%):</span> <span id="resSocial">0</span></div>
+            <div class="result-row deduction-red"><span>ຫັກອາກອນລາຍໄດ້:</span> <span id="resTax">0</span></div>
             
-            <div class="result-row deduct"><span>ຫັກປະກັນສັງຄົມ (8%):</span> <span id="resSocial">0</span></div>
-            <div class="result-row deduct"><span>ຫັກອາກອນລາຍໄດ້:</span> <span id="resTax">0</span></div>
-            
-            <div class="result-row"><span>ເງິນອຸດໜູນທີ່ຍົກເວັ້ນ (ໂຊເຟີ...):</span> <span id="resNonTaxableAllow">0</span></div>
-            <div class="result-row"><span>ລວມເງິນອຸດໜູນເມຍ:</span> <span id="resWifeShow">0</span></div>
-            <div class="result-row"><span>ລວມເງິນອຸດໜູນລູກ:</span> <span id="resChildShow">0</span></div>
+            <div class="result-row"><span>ເງິນອຸດໜູນທີ່ຍົກເວັ້ນ:</span> <span id="resNonTaxableAllow">0</span></div>
+            <div class="result-row"><span>ເງິນອຸດໜູນເມຍ:</span> <span id="resWifeShow">0</span></div>
+            <div class="result-row"><span>ເງິນອຸດໜູນລູກ:</span> <span id="resChildShow">0</span></div>
             <div class="result-row"><span>ເງິນນ້ຳມັນ:</span> <span id="resFuel">0</span></div>
-            
-            <div class="result-row total-row">
-                <span>ເງິນເດືອນໄດ້ຮັບຕົວຈິງ:</span> 
-                <span class="net-salary" id="resNetSalary">0</span>
-            </div>
+            <div class="result-row total-row"><span>ເງິນເດືອນໄດ້ຮັບຕົວຈິງ:</span> <span class="net-salary" id="resNetSalary">0</span></div>
         </div>
-
-        <div class="developer-credit">
-            ພັດທະນາໂດຍ <br>
-            <a href="https://www.facebook.com/share/19Av4s5mEY/" target="_blank" class="fb-footer-link">
-                <span class="red-text"><i class="fab fa-facebook-square"></i> KLK ຊື້-ຂາຍ ລົດມືສອງ 020 2982 1715</span>
-            </a>
-        </div>
+        <div class="developer-credit">ພັດທະນາໂດຍ: kalaket KEOPASERTH</div>
     </div>
 </div>
 
 <script>
-function formatInput(input) {
-    let value = input.value.replace(/,/g, '');
-    if (!isNaN(value) && value !== '') {
-        input.value = parseFloat(value).toLocaleString('en-US');
-    } else {
-        if(value === '') input.value = '';
+    function formatInput(input) { let value = input.value.replace(/,/g, ''); if (!isNaN(value) && value !== '') { input.value = parseFloat(value).toLocaleString('en-US'); } }
+    function getRawNumber(id) { let val = document.getElementById(id).value.replace(/,/g, ''); return parseFloat(val) || 0; }
+    
+    function updateBaseSalary() {
+        let rankSelect = document.getElementById('rankSelect');
+        let selectedVal = rankSelect.value;
+        if(selectedVal !== "") {
+            document.getElementById('baseSalary').value = parseFloat(selectedVal.replace(/,/g, '')).toLocaleString('en-US');
+            rankSelect.style.color = "#333";
+            rankSelect.classList.remove('input-error');
+        } else {
+            document.getElementById('baseSalary').value = "";
+            rankSelect.style.color = "red";
+        }
     }
-}
-
-function getRawNumber(id) {
-    let val = document.getElementById(id).value.replace(/,/g, '');
-    return parseFloat(val) || 0;
-}
-
-function updateBaseSalary() {
-    let selectElement = document.getElementById('rankSelect');
-    let baseSalaryInput = document.getElementById('baseSalary');
-    baseSalaryInput.value = selectElement.value;
-}
-
-function formatNum(num) {
-    let rounded = Math.round(num);
-    return rounded.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ກີບ";
-}
-
-function calculateSalary() {
-    let baseSalary = getRawNumber('baseSalary');
-    let positionAllowance = getRawNumber('positionAllowance');
-    let yearsOfService = parseFloat(document.getElementById('yearsOfService').value) || 0;
-    let taxableAllowance = getRawNumber('taxableAllowance');
     
-    let fuelAllowance = getRawNumber('fuelAllowance');
-    let nonTaxableAllowance = getRawNumber('nonTaxableAllowance');
+    function formatNum(num) { return Math.round(num).toLocaleString('en-US') + " ກີບ"; }
     
-    let wifeCount = parseInt(document.getElementById('wifeCount').value) || 0;
-    let childCount = parseInt(document.getElementById('childCount').value) || 0;
+    function calculateSalary() {
+        let rankSelect = document.getElementById('rankSelect');
+        let yearsInput = document.getElementById('yearsOfService');
+        let fuelInput = document.getElementById('fuelAllowance');
 
-    let wifeAllowance = wifeCount * 200000;
-    let childAllowance = childCount * 200000;
+        rankSelect.classList.remove('input-error');
+        yearsInput.classList.remove('input-error');
+        fuelInput.classList.remove('input-error');
 
-    let promo30 = baseSalary * 0.30;
+        let baseSalary = getRawNumber('baseSalary');
+        if (baseSalary === 0) { alert("ກະລຸນາເລືອກຊັ້ນກ່ອນ!"); rankSelect.classList.add('input-error'); rankSelect.focus(); return; }
+        if (yearsInput.value === "") { alert("ກະລຸນາປ້ອນຈຳນວນປີການ!"); yearsInput.classList.add('input-error'); yearsInput.focus(); return; }
+        if (fuelInput.value === "" || fuelInput.value === "0") { alert("ກະລຸນາປ້ອນຈຳນວນເງິນນ້ຳມັນ!"); fuelInput.classList.add('input-error'); fuelInput.focus(); return; }
+        
+        let yearsOfService = parseFloat(yearsInput.value);
+        let fuelAllowance = getRawNumber('fuelAllowance');
+        let positionAllowance = getRawNumber('positionAllowance');
+        let taxableAllowance = getRawNumber('taxableAllowance');
+        let nonTaxableAllowance = getRawNumber('nonTaxableAllowance');
+        let wifeAllowance = parseInt(document.getElementById('wifeCount').value) * 200000;
+        let childAllowance = parseInt(document.getElementById('childCount').value) * 200000;
+        let promo30 = baseSalary * 0.30;
+        let serviceMoney = (Math.min(yearsOfService, 5) * 10000) + (Math.max(0, Math.min(yearsOfService - 5, 10)) * 20000);
+        let totalGross = baseSalary + promo30 + positionAllowance + serviceMoney + taxableAllowance;
+        let socialInsurance = totalGross * 0.08;
+        let salaryForTax = totalGross - socialInsurance;
+        let tax = 0, income = salaryForTax;
+        if (income > 65000000) { tax += (income - 65000000) * 0.25; income = 65000000; }
+        if (income > 25000000) { tax += (income - 25000000) * 0.20; income = 25000000; }
+        if (income > 15000000) { tax += (income - 15000000) * 0.15; income = 15000000; }
+        if (income > 5000000) { tax += (income - 5000000) * 0.10; income = 5000000; }
+        if (income > 2500000) { tax += (income - 2500000) * 0.05; }
+        let netSalary = (salaryForTax - tax) + fuelAllowance + nonTaxableAllowance + wifeAllowance + childAllowance;
 
-    let serviceMoney = 0;
-    if(yearsOfService > 0) {
-        serviceMoney = (Math.min(yearsOfService, 5) * 10000) + (Math.max(0, Math.min(yearsOfService - 5, 10)) * 20000); 
+        document.getElementById('resBaseSalary').innerText = formatNum(baseSalary);
+        document.getElementById('resPromo').innerText = formatNum(promo30);
+        document.getElementById('resPosition').innerText = formatNum(positionAllowance);
+        document.getElementById('resService').innerText = formatNum(serviceMoney);
+        document.getElementById('resTaxableAllow').innerText = formatNum(taxableAllowance);
+        document.getElementById('resTotalGross').innerText = formatNum(totalGross);
+        document.getElementById('resSocial').innerText = formatNum(socialInsurance);
+        document.getElementById('resTax').innerText = formatNum(tax);
+        document.getElementById('resNonTaxableAllow').innerText = formatNum(nonTaxableAllowance);
+        document.getElementById('resWifeShow').innerText = formatNum(wifeAllowance);
+        document.getElementById('resChildShow').innerText = formatNum(childAllowance);
+        document.getElementById('resFuel').innerText = formatNum(fuelAllowance);
+        document.getElementById('resNetSalary').innerText = formatNum(netSalary);
+        document.getElementById('results').style.display = 'block';
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }
-
-    let totalGross = baseSalary + promo30 + positionAllowance + serviceMoney + taxableAllowance;
-    let socialInsurance = totalGross * 0.08;
-    let salaryForTax = totalGross - socialInsurance;
-
-    let tax = 0;
-    let income = salaryForTax;
-
-    if (income > 65000000) { tax += (income - 65000000) * 0.25; income = 65000000; }
-    if (income > 25000000) { tax += (income - 25000000) * 0.20; income = 25000000; }
-    if (income > 15000000) { tax += (income - 15000000) * 0.15; income = 15000000; }
-    if (income > 5000000) { tax += (income - 5000000) * 0.10; income = 5000000; }
-    if (income > 2500000) { tax += (income - 2500000) * 0.05; }
-
-    let netSalary = (salaryForTax - tax) + fuelAllowance + nonTaxableAllowance + wifeAllowance + childAllowance;
-
-    document.getElementById('resBaseSalary').innerText = formatNum(baseSalary);
-    document.getElementById('resPromo').innerText = formatNum(promo30);
-    document.getElementById('resPosition').innerText = formatNum(positionAllowance);
-    document.getElementById('resService').innerText = formatNum(serviceMoney);
-    document.getElementById('resTaxableAllow').innerText = formatNum(taxableAllowance);
-    
-    document.getElementById('resTotalGross').innerText = formatNum(totalGross);
-    document.getElementById('resSocial').innerText = formatNum(socialInsurance);
-    document.getElementById('resTax').innerText = formatNum(tax);
-    
-    document.getElementById('resNonTaxableAllow').innerText = formatNum(nonTaxableAllowance);
-    document.getElementById('resWifeShow').innerText = formatNum(wifeAllowance);
-    document.getElementById('resChildShow').innerText = formatNum(childAllowance);
-    document.getElementById('resFuel').innerText = formatNum(fuelAllowance);
-    
-    document.getElementById('resNetSalary').innerText = formatNum(netSalary);
-    
-    document.getElementById('results').style.display = 'block';
-}
 </script>
-
 </body>
 </html>
