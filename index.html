@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ລະບົບຄິດໄລ່ເງິນເດືອນ ແລະ ອາກອນ</title>
+    <!-- PWA Settings -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a365d">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;400;700;800&display=swap');
@@ -21,7 +26,7 @@
         .header-card { width: 100%; display: flex; align-items: center; justify-content: center; gap: 20px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; }
         
         .logo-box { display: flex; flex-direction: column; align-items: center; gap: 8px; }
-        .fb-logo-circle { width: 45px; height: 45px; background: #1877f2; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .fb-logo-circle { width: 45px; height: 45px; background: #1877f2; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-decoration: none; }
         .btn-follow { background: #e74c3c; font-weight: bold; padding: 2px 8px; font-size: 9px; color: white; border-radius: 10px; text-decoration: none; border: 1px solid #e74c3c; transition: 0.3s; }
         
         .info-box { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -86,7 +91,7 @@
         
         <div class="header-card">
             <div class="logo-box">
-                <div class="fb-logo-circle"><i class="fab fa-facebook-f"></i></div>
+                <a href="https://www.facebook.com/share/19Av4s5mEY/" target="_blank" class="fb-logo-circle"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://www.facebook.com/share/19Av4s5mEY/" target="_blank" class="btn-follow">ກົດຕິດຕາມ</a>
             </div>
 
@@ -180,6 +185,12 @@
 </div>
 
 <script>
+    // PWA Service Worker Registration
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js')
+            .then(() => console.log('Service Worker Registered'));
+    }
+
     function formatInput(input) { let value = input.value.replace(/,/g, ''); if (!isNaN(value) && value !== '') { input.value = parseFloat(value).toLocaleString('en-US'); } }
     function getRawNumber(id) { let val = document.getElementById(id).value.replace(/,/g, ''); return parseFloat(val) || 0; }
     
