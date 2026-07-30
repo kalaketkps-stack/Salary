@@ -231,7 +231,7 @@
         let wifeAllowance = parseInt(document.getElementById('wifeCount').value) * 200000;
         let childAllowance = parseInt(document.getElementById('childCount').value) * 200000;
         let promo30 = baseSalary * 0.30;
-        let serviceMoney = (Math.min(yearsOfService, 5) * 10000) + (Math.max(0, Math.min(yearsOfService - 5, 10)) * 20000);
+        let serviceMoney = yearsOfService <= 5 ? yearsOfService * 10000 : yearsOfService <= 15 ? 50000 + ((yearsOfService - 5) * 20000) : yearsOfService <= 25 ? 250000 + ((yearsOfService - 15) * 30000) : 550000 + ((yearsOfService - 25) * 40000);
         let totalGross = baseSalary + promo30 + positionAllowance + serviceMoney + taxableAllowance;
         let socialInsurance = totalGross * 0.08;
         let salaryForTax = totalGross - socialInsurance;
