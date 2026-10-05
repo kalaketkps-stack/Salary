@@ -2,7 +2,7 @@
 <html lang="lo">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>ລະບົບຄິດໄລ່ເງິນເດືອນ ແລະ ອາກອນ</title>
     <!-- PWA Settings -->
     <link rel="manifest" href="manifest.json">
@@ -133,7 +133,7 @@
             <div class="form-group"><label>ເງິນຕາມຊັ້ນ (ກີບ):</label><input type="text" id="baseSalary" placeholder="0" readonly></div>
             <div class="form-group"><label>ເງິນໜ້າທີ່ຕຳແໜ່ງ (ກີບ):</label><input type="text" id="positionAllowance" value="0" oninput="formatInput(this)"></div>
             <div class="form-group"><label>ຈຳນວນປີການ (ປີ):</label><input type="number" id="yearsOfService" placeholder="ປ້ອນປີການ"></div>
-            <div class="form-group"><label>ເງິນນ້ຳມັນ (ກີບ):</label><input type="text" id="fuelAllowance" value="50,000" oninput="formatInput(this)" placeholder="ປ້ອນເງິນນ້ຳມັນ"></div>
+            <div class="form-group"><label>ເງິນນ້ຳມັນ (ກີບ):</label><input type="text" id="fuelAllowance" value="0" oninput="formatInput(this)" placeholder="ປ້ອນເງິນນ້ຳມັນ"></div>
         </div>
         
         <div class="section-title">ເງິນອຸດໜູນອື່ນໆ</div>
@@ -221,7 +221,6 @@
         let baseSalary = getRawNumber('baseSalary');
         if (baseSalary === 0) { alert("ກະລຸນາເລືອກຊັ້ນກ່ອນ!"); rankSelect.classList.add('input-error'); rankSelect.focus(); return; }
         if (yearsInput.value === "") { alert("ກະລຸນາປ້ອນຈຳນວນປີການ!"); yearsInput.classList.add('input-error'); yearsInput.focus(); return; }
-        if (fuelInput.value === "" || fuelInput.value === "0") { alert("ກະລຸນາປ້ອນຈຳນວນເງິນນ້ຳມັນ!"); fuelInput.classList.add('input-error'); fuelInput.focus(); return; }
         
         let yearsOfService = parseFloat(yearsInput.value);
         let fuelAllowance = getRawNumber('fuelAllowance');
